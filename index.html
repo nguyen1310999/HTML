@@ -4,6 +4,163 @@
   <meta charset="UTF-8">
   <title>Kế hoạch bảo trì</title>
   <style>
+  /* Font và màu nền tổng thể */
+body {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #4c4c4c;
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header bar */
+.header-bar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Container / Form box */
+.container, .card-box {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button, .btn, .add-btn {
+  background-color: #875A7B;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+button:hover, .btn:hover, .add-btn:hover {
+  background-color: #6f4b68;
+}
+
+/* Input, Select, Textarea */
+input, select, textarea {
+  background-color: #fff;
+  border: 1px solid #dcdfe3;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+  margin-bottom: 12px;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #875A7B;
+  outline: none;
+}
+
+/* Label */
+label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: #e8e8e8;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tab.active {
+  background-color: #875A7B;
+  color: #fff;
+}
+
+/* Table (Danh sách vật tư, dữ liệu...) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f6f6f6;
+  font-weight: 600;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.modal-header {
+  background-color: #875A7B;
+  color: #fff;
+  padding: 16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Footer actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Responsive chỉnh gọn lại cho mobile */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+  }
+
+  button, .btn {
+    width: 100%;
+  }
+}
+
+/* Odoo màu chuẩn dùng nếu cần biến */
+:root {
+  --odoo-primary: #875A7B;
+  --odoo-light: #f4f5f7;
+  --odoo-border: #e0e0e0;
+}
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -142,7 +299,6 @@
     <div class="form-grid">
       <div class="form-group"><label>Mã yêu cầu</label><input type="text"></div>
       <div class="form-group"><label>Đội bảo trì</label><input type="text"></div>
-      <div class="form-group"><label>Thiết bị</label><input type="text"></div>
       <div class="form-group"><label>Vị trí</label><input type="text"></div>
       <div class="form-group"><label>Ngày yêu cầu</label><input type="date" value="2025-07-11"></div>
       <div class="form-group">
@@ -156,7 +312,12 @@
       </div>
       <div class="form-group"><label>Người phụ trách</label><input type="text" value="Administrator"></div>
       <div class="form-group"><label>Người phê duyệt hiện tại</label><input type="text"></div>
-      <div class="form-group"><label>Loại yêu cầu</label><input type="text"></div>
+      <div class="form-group"><label>Loại yêu cầu</label>
+        <select>
+          <option>Bảo trì định kì</option>
+          <option selected>Bảo trì sự cố</option>
+        </select>
+        </div>
     </div>
 
     <!-- Thiết bị bảo trì -->

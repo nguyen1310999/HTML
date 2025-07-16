@@ -1,91 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="Gửi lời yêu của đến crush!" />
-    <meta name="author" content="DONGNGO" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./assets/fonts/themify-icons.css" />
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <link rel="stylesheet" href="./assets/responsive.css" />
-    <title>::.. Thế Giới của Anh ^^ ..::</title>
-  </head>
-  <body>
-    <div class="container">
-      <div id="preloader">
-        <div class="spinner">
-          <div class="dashed-loading"></div>
-        </div>
-      </div>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tỏ Tình</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #e6f7ff);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-      <canvas id="pinkboard"></canvas>
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
 
-      <header class="header"></header>
+    h1 {
+      color: #ff4d88;
+    }
 
-      <div class="content">
-        <div class="music-control">
-          <audio controls autoplay loop class="music">
-            <source src="./assets/musics/V1.wav" type="audio/wav" />
-          </audio>
-        </div>
-        <div class="answer-question">
-          <button class="btn btn--yes"></button>
-          <button class="btn btn--no"></button>
-        </div>
-      </div>
-      <!-- <footer class="footer">
-            <span class="footer-lisence">© 2021, Designed by
-                <a href="https://fb.com/100055545081553" class="footer-link">AndyNgoJs</a>
-            </span>
-        </footer> -->
-      <!-- Modal -->
-      <div class="modal">
-        <div class="modal__overlay"></div>
-        <div class="modal__body">
-          <div class="message-modal">
-            <div class="heading-name">
-              <h2 class="name"></h2>
-            </div>
-            <div class="heading-msg">
-              <p class="message"></p>
-            </div>
-            <div class="footer-modal">
-              <button class="btn btn-close">
-                <i class="btn-icon ti-close"></i>
-                Đóng
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    .heart {
+      font-size: 4em;
+      color: red;
+      animation: beat 1s infinite;
+    }
 
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-    ></script>
-    <script src="./CONFIG.js"></script>
-    <script src="./assets/js/setting.js"></script>
-    <script src="./assets/js/RequestAnimationFrame.js"></script>
-    <script src="./assets/js/heartParticle.js"></script>
-    <script src="./assets/js/main.js"></script>
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
 
-  </body>
+    .btn {
+      padding: 10px 20px;
+      background-color: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+      position: absolute;
+      width: 100px;
+      height: 40px;
+      box-sizing: border-box;
+    }
+
+    .btn:hover {
+      background-color: #e6005c;
+    }
+
+    #yesBtn {
+      left: 60px;
+      bottom: 30px;
+    }
+
+    #noBtn {
+      left: 200px;
+      bottom: 30px;
+    }
+
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px;
+      text-align: center;
+      z-index: 100;
+      display: none;
+    }
+
+    #popup h2 {
+      color: #ff4d88;
+      margin-bottom: 10px;
+    }
+
+    .heart-effect {
+      position: fixed;
+      font-size: 24px;
+      animation: float 2s ease-out forwards;
+      pointer-events: none;
+      color: red;
+      z-index: 999;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gửi đến em bé của anh 💌</h1>
+    <p>Anh thương em bé của anh nhiều lắm á.</p>
+    <div class="heart">❤️</div>
+    <p>Mỗi ngày anh đều yêu em bé của anh nhiều hơn 🌟</p>
+    <p>Em bé có thương anh không?</p>
+    <button class="btn" id="yesBtn" onclick="showResponse(true)">Có 💖</button>
+    <button class="btn" id="noBtn" onmouseover="moveButton()">Không 😢</button>
+  </div>
+
+  <div id="popup">
+    <h2>Anh cũng thương em bé nhiều lắm á 💕</h2>
+    <p>Anh hứa sẽ làm em bé cười thật nhiều và có những ngày thật tuyệt vời bên nhau! 💑</p>
+  </div>
+
+  <script>
+    function showResponse(answer) {
+      if (answer) {
+        document.getElementById('popup').style.display = 'block';
+        launchHearts();
+      }
+    }
+
+    function moveButton() {
+      const btn = document.getElementById('noBtn');
+      const container = document.querySelector('.container');
+      const maxX = container.clientWidth - btn.offsetWidth;
+      const maxY = container.clientHeight - btn.offsetHeight;
+
+      const randX = Math.floor(Math.random() * maxX);
+      const randY = Math.floor(Math.random() * maxY);
+
+      btn.style.left = randX + 'px';
+      btn.style.top = randY + 'px';
+    }
+
+    function launchHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-effect';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = window.innerHeight + 'px';
+        heart.textContent = '❤️';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
+  </script>
+</body>
 </html>
